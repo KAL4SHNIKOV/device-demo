@@ -27,4 +27,7 @@ const resolveBase = (command: 'build' | 'serve') => {
 export default defineConfig(({ command }) => ({
   plugins: [react()],
   base: resolveBase(command),
+  build: {
+    outDir: 'docs',
+  },
 }))
