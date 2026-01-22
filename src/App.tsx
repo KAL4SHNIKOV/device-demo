@@ -1,20 +1,55 @@
 import { useState } from 'react';
-import { 
-  LayoutDashboard, 
-  Truck, 
-  ClipboardList, 
-  QrCode, 
-  MapPin, 
-  Search, 
-  Bell, 
-  ChevronRight, 
-  Plus,
-  Filter,
-  User,
-  Settings,
-  CheckCircle,
-  AlertTriangle
-} from 'lucide-react';
+
+type IconProps = {
+  size?: number;
+  className?: string;
+};
+
+type IconBaseProps = IconProps & {
+  label: string;
+};
+
+const IconBase = ({ size = 24, className, label }: IconBaseProps) => {
+  const fontSize = Math.max(6, Math.round(size / 2));
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      className={className}
+      role="img"
+      aria-label={label}
+    >
+      <circle cx="12" cy="12" r="10" fill="currentColor" opacity="0.15" />
+      <text
+        x="12"
+        y="15.5"
+        textAnchor="middle"
+        fontSize={fontSize}
+        fill="currentColor"
+        fontFamily="ui-sans-serif, system-ui"
+      >
+        {label}
+      </text>
+    </svg>
+  );
+};
+
+const LayoutDashboardIcon = (props: IconProps) => <IconBase label="D" {...props} />;
+const TruckIcon = (props: IconProps) => <IconBase label="TR" {...props} />;
+const ClipboardListIcon = (props: IconProps) => <IconBase label="CL" {...props} />;
+const QrCodeIcon = (props: IconProps) => <IconBase label="QR" {...props} />;
+const MapPinIcon = (props: IconProps) => <IconBase label="MP" {...props} />;
+const SearchIcon = (props: IconProps) => <IconBase label="S" {...props} />;
+const BellIcon = (props: IconProps) => <IconBase label="B" {...props} />;
+const ChevronRightIcon = (props: IconProps) => <IconBase label=">" {...props} />;
+const PlusIcon = (props: IconProps) => <IconBase label="+" {...props} />;
+const FilterIcon = (props: IconProps) => <IconBase label="F" {...props} />;
+const UserIcon = (props: IconProps) => <IconBase label="U" {...props} />;
+const SettingsIcon = (props: IconProps) => <IconBase label="⚙" {...props} />;
+const CheckCircleIcon = (props: IconProps) => <IconBase label="✓" {...props} />;
+const AlertTriangleIcon = (props: IconProps) => <IconBase label="!" {...props} />;
 
 // 模拟数据：设备列表
 const mockDevices = [
@@ -41,14 +76,14 @@ export default function App() {
         onClick={() => setActiveTab('dashboard')} 
         className={`flex flex-col items-center space-y-1 ${activeTab === 'dashboard' ? 'text-blue-600' : 'text-gray-400'}`}
       >
-        <LayoutDashboard size={24} />
+        <LayoutDashboardIcon size={24} />
         <span className="text-xs">驾驶舱</span>
       </button>
       <button 
         onClick={() => setActiveTab('resources')} 
         className={`flex flex-col items-center space-y-1 ${activeTab === 'resources' ? 'text-blue-600' : 'text-gray-400'}`}
       >
-        <Truck size={24} />
+        <TruckIcon size={24} />
         <span className="text-xs">资源库</span>
       </button>
       <div className="relative -top-6">
@@ -56,21 +91,21 @@ export default function App() {
           onClick={() => setShowScanner(true)}
           className="bg-blue-600 text-white p-4 rounded-full shadow-xl border-4 border-gray-50 flex flex-col items-center justify-center"
         >
-          <QrCode size={28} />
+          <QrCodeIcon size={28} />
         </button>
       </div>
       <button 
         onClick={() => setActiveTab('dispatch')} 
         className={`flex flex-col items-center space-y-1 ${activeTab === 'dispatch' ? 'text-blue-600' : 'text-gray-400'}`}
       >
-        <ClipboardList size={24} />
+        <ClipboardListIcon size={24} />
         <span className="text-xs">调度中心</span>
       </button>
       <button 
         onClick={() => setActiveTab('profile')} 
         className={`flex flex-col items-center space-y-1 ${activeTab === 'profile' ? 'text-blue-600' : 'text-gray-400'}`}
       >
-        <User size={24} />
+        <UserIcon size={24} />
         <span className="text-xs">我的</span>
       </button>
     </div>
@@ -111,7 +146,7 @@ export default function App() {
           </div>
         </div>
         <div className="relative">
-          <Bell size={20} />
+          <BellIcon size={20} />
           <span className="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"></span>
         </div>
       </div>
@@ -125,10 +160,10 @@ export default function App() {
             {/* 快捷入口 Grid */}
             <div className="grid grid-cols-4 gap-2 bg-white p-4 rounded-xl shadow-sm">
               {[
-                { icon: <Truck className="text-blue-500" />, label: '我要租设备' },
-                { icon: <ClipboardList className="text-orange-500" />, label: '发布闲置' },
-                { icon: <MapPin className="text-green-500" />, label: '设备地图' },
-                { icon: <AlertTriangle className="text-red-500" />, label: '故障报修' }
+                { icon: <TruckIcon className="text-blue-500" />, label: '我要租设备' },
+                { icon: <ClipboardListIcon className="text-orange-500" />, label: '发布闲置' },
+                { icon: <MapPinIcon className="text-green-500" />, label: '设备地图' },
+                { icon: <AlertTriangleIcon className="text-red-500" />, label: '故障报修' }
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center gap-2">
                   <div className="bg-gray-50 p-3 rounded-full">{item.icon}</div>
@@ -150,7 +185,7 @@ export default function App() {
                 <div className="text-xs text-gray-500 mb-1">本月节约租赁费</div>
                 <div className="text-2xl font-bold text-gray-800">24.5 <span className="text-xs font-normal">万</span></div>
                 <div className="mt-2 text-xs text-green-600 flex items-center">
-                  <CheckCircle size={12} className="mr-1"/> 同比增长 12%
+                  <CheckCircleIcon size={12} className="mr-1"/> 同比增长 12%
                 </div>
               </div>
             </div>
@@ -201,11 +236,11 @@ export default function App() {
             {/* 搜索栏 */}
             <div className="flex gap-2">
               <div className="flex-1 bg-white flex items-center px-3 py-2 rounded-lg shadow-sm border border-gray-200">
-                <Search size={18} className="text-gray-400 mr-2" />
+                <SearchIcon size={18} className="text-gray-400 mr-2" />
                 <input type="text" placeholder="搜索设备名称/型号/编号" className="bg-transparent outline-none text-sm w-full" />
               </div>
               <button className="bg-white p-2 rounded-lg shadow-sm border border-gray-200">
-                <Filter size={20} className="text-gray-600" />
+                <FilterIcon size={20} className="text-gray-600" />
               </button>
             </div>
 
@@ -241,7 +276,7 @@ export default function App() {
                   </div>
                   <div className="mt-3 pt-3 border-t border-gray-50 flex justify-between items-center text-xs text-gray-500">
                     <div className="flex items-center gap-1">
-                      <MapPin size={12} /> {dev.location}
+                      <MapPinIcon size={12} /> {dev.location}
                     </div>
                     <div>权属: {dev.owner}</div>
                   </div>
@@ -260,7 +295,7 @@ export default function App() {
           <div className="p-4 space-y-4">
             {/* 发起新流程 */}
             <button className="w-full bg-blue-600 text-white py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">
-              <Plus size={20} /> 发起新的租赁需求
+              <PlusIcon size={20} /> 发起新的租赁需求
             </button>
 
             <div className="bg-white rounded-xl p-4 shadow-sm">
@@ -272,7 +307,7 @@ export default function App() {
                     <div className="text-xs text-gray-500 mt-1">订单号：RENT-20251108</div>
                     <div className="text-xs text-gray-400 mt-1">预计送达：今日 14:00</div>
                     <div className="mt-2 bg-gray-50 p-2 rounded text-xs flex items-center gap-2">
-                      <Truck size={14} className="text-gray-500"/>
+                      <TruckIcon size={14} className="text-gray-500"/>
                       <span>车牌：云A·88888 (李师傅 139****1234)</span>
                     </div>
                   </div>
@@ -317,10 +352,10 @@ export default function App() {
 
             <div className="bg-white rounded-xl shadow-sm overflow-hidden">
               {[
-                {icon: <ClipboardList size={18}/>, label: '我的审批', sub: '3个待处理'},
-                {icon: <Truck size={18}/>, label: '我经手的设备', sub: '5台在租'},
-                {icon: <CheckCircle size={18}/>, label: '扫码记录', sub: ''},
-                {icon: <Settings size={18}/>, label: '系统设置', sub: ''},
+                {icon: <ClipboardListIcon size={18}/>, label: '我的审批', sub: '3个待处理'},
+                {icon: <TruckIcon size={18}/>, label: '我经手的设备', sub: '5台在租'},
+                {icon: <CheckCircleIcon size={18}/>, label: '扫码记录', sub: ''},
+                {icon: <SettingsIcon size={18}/>, label: '系统设置', sub: ''},
               ].map((item, idx) => (
                 <div key={idx} className="flex items-center justify-between p-4 border-b border-gray-50 hover:bg-gray-50 active:bg-gray-100">
                   <div className="flex items-center gap-3 text-gray-700">
@@ -329,7 +364,7 @@ export default function App() {
                   </div>
                   <div className="flex items-center gap-2">
                     {item.sub && <span className="text-xs text-red-500">{item.sub}</span>}
-                    <ChevronRight size={16} className="text-gray-300" />
+                    <ChevronRightIcon size={16} className="text-gray-300" />
                   </div>
                 </div>
               ))}
