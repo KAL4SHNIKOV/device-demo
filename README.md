@@ -74,12 +74,13 @@ export default defineConfig([
 
 ## Deploying to GitHub Pages
 
-This project is configured to deploy the `dist` output to GitHub Pages on every push to `main` using `.github/workflows/deploy.yml`.
+This project is configured to deploy the `docs` output to GitHub Pages on every push to `main` using `.github/workflows/deploy.yml`.
 
 ### One-time setup
 
 1. In the GitHub repository settings, enable **Pages**.
 2. Set **Build and deployment** to **GitHub Actions**.
+   - If you must use **Deploy from a branch**, set the folder to `/docs` so Pages serves the built output.
 
 ### How it works
 
