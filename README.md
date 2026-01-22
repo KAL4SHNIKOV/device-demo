@@ -71,3 +71,19 @@ export default defineConfig([
   },
 ])
 ```
+
+## Deploying to GitHub Pages
+
+This project is configured to deploy the `dist` output to GitHub Pages on every push to `main` using `.github/workflows/deploy.yml`.
+
+### One-time setup
+
+1. In the GitHub repository settings, enable **Pages**.
+2. Set **Build and deployment** to **GitHub Actions**.
+
+### How it works
+
+- The Vite config sets `base` to `./` so the build works regardless of the repository name.
+- The workflow runs `npm ci` and `npm run build`, then publishes the `dist` folder.
+
+If you prefer an absolute path, update `base` in `vite.config.ts` to `/<your-repo-name>/`.
