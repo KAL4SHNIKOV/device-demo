@@ -83,7 +83,7 @@ This project is configured to deploy the `dist` output to GitHub Pages on every 
 
 ### How it works
 
-- The Vite config sets `base` to `./` so the build works regardless of the repository name.
-- The workflow runs `npm install --no-package-lock` and `npm run build`, then publishes the `dist` folder.
+- The Vite config sets `base` to `/device-demo/` to match the repository name.
+- The workflow runs `npm ci` and `npm run build`, then publishes the `dist` folder.
 
-If you prefer an absolute path, update `base` in `vite.config.ts` to `/<your-repo-name>/`.
+If you fork this repo or change the repository name, update `base` in `vite.config.ts` accordingly.
