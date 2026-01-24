@@ -1,90 +1,48 @@
-# React + TypeScript + Vite
+# Device Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+设备资源管理移动端 Demo（React + TypeScript + Vite）。界面包含驾驶舱、资源库、调度中心、个人中心与扫码模拟场景，主要用于展示设备管理与调度流程的交互设计。
 
-Currently, two official plugins are available:
+## 主要功能
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **驾驶舱**：关键指标、待办任务、资源分布概览。
+- **资源库**：设备检索、分类筛选、设备状态与位置展示。
+- **调度中心**：租赁流程追踪、历史单据列表。
+- **个人中心**：个人信息与快捷入口。
+- **扫码模拟**：二维码/资产标签扫描界面。
 
-## React Compiler
+## 技术栈
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19 + TypeScript
+- Vite 7
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## 本地开发
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 常用脚本
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev      # 本地开发
+npm run build    # 生产构建
+npm run preview  # 预览构建产物
+npm run lint     # 代码检查
 ```
 
-## Deploying to GitHub Pages
+## 目录结构
 
-This project is configured to deploy the `docs` output to GitHub Pages on every push to `main` using `.github/workflows/deploy.yml`.
+```text
+src/
+  App.tsx        # 主界面与交互逻辑
+  App.css        # App 级样式
+  index.css      # 全局样式
+  main.tsx       # 入口文件
+```
 
-### One-time setup
+## 备注
 
-1. In the GitHub repository settings, enable **Pages**.
-2. Set **Build and deployment** to **GitHub Actions**.
-   - If you must use **Deploy from a branch**, set the folder to `/docs` so Pages serves the built output.
-
-### How it works
-
-- The Vite config resolves `base` for GitHub Pages builds and keeps `/` for user/org pages.
-- The workflow runs `npm ci` and `npm run build`, then publishes the `docs` folder.
-
-If you fork this repo or change the repository name, update `base` in `vite.config.ts` accordingly.
+- 目前数据为前端模拟数据，便于展示交互与布局。
+- 如需对接真实接口，可在 `App.tsx` 中替换模拟数据与状态逻辑。
