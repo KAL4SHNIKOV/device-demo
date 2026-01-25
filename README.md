@@ -23,6 +23,26 @@ npm install
 npm run dev
 ```
 
+## 后端接口（Node API）
+
+本项目新增了轻量级后端服务（不包含 IoT 接入），用于提供设备、调度、任务与个人中心数据接口。
+
+```bash
+npm run server
+```
+
+默认监听 `http://localhost:4000`，接口以 `/api` 为前缀，常用示例：
+
+- `GET /api/health` 健康检查
+- `GET /api/dashboard` 驾驶舱汇总指标
+- `GET /api/devices` 设备列表（支持 `status/type/q` 查询）
+- `POST /api/devices` 新增设备
+- `GET /api/tasks` 待办任务
+- `POST /api/tasks` 新建任务
+- `GET /api/dispatches` 调度单列表
+- `POST /api/dispatches` 新建调度单
+- `GET /api/profile` 个人中心信息
+
 ## 常用脚本
 
 ```bash
@@ -30,6 +50,7 @@ npm run dev      # 本地开发
 npm run build    # 生产构建
 npm run preview  # 预览构建产物
 npm run lint     # 代码检查
+npm run server   # 启动后端 API
 ```
 
 ## 目录结构
